@@ -451,6 +451,27 @@ function drawBlackHole() {
   ctx.fill();
 }
 
+const logoutButton = document.getElementById("logoutButton");
+
+function logout() {
+
+    fetch("/logout", {
+        method: "POST"
+    })
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+
+        if (data.success) {
+            window.location.href = "/";
+        }
+
+    });
+}
+
+
+
 function draw(time_ms) {
   const dt = lastTime_ms === undefined ? 0 : (time_ms - lastTime_ms) / 1000;
   lastTime_ms = time_ms;
@@ -672,6 +693,8 @@ window.addEventListener("mouseup", onLauncherMouseUp);
 canvas.addEventListener("mousedown", onMagnetMouseDown);
 window.addEventListener("mousemove", onMagnetMouseMove);
 window.addEventListener("mouseup", onMagnetMouseUp);
+
+logoutButton.addEventListener("click", logout);
 
 
 // pour mettre à jour le curseur

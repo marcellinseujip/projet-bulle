@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Projet bulles</title>
+  <style>
+    .controls {
+      display: grid;
+
+      /* Deux colonnes suffisamment larges pour leur contenu */
+      grid-template-columns: 500px 350px;
+
+      /* Petit espace entre les deux colonnes */
+      column-gap: 20px;
+      row-gap: 8px;
+
+      /* Même largeur que le canvas */
+      width: 950px;
+
+      box-sizing: border-box;
+    }
+    fieldset {
+      margin: 0;
+      padding: 6px 10px;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-container">
+    <div class="controls">
+      <fieldset style="border:none;">
+        <legend>Apparence</legend>
+        <label><input type="radio" name="shape" value="square" checked> Square</label>
+        <label><input type="radio" name="shape" value="circle" > Circle</label>
+        <label><input type="radio" name="shape" value="triangle">Triangle</label>
+        <label><input type="color" id="bubbleColor" value="#000000">Color:</label>
+        <label><input type="range" id="bubbleSize" min = "15" max = "85"value="20">Size:</label>
+      </fieldset>
+
+      <!--mode création de bulles-->
+      <fieldset style="border:none;">
+        <legend>Mode de création</legend>
+        <label><input type="radio" name="bubbleCreationMode" value="normal" checked> Normal</label>   
+        <label><input type="radio" name="bubbleCreationMode" value="launcher" > Lanceur</label>
+        <label><input type="radio" name="bubbleCreationMode" value="explosion"> Explosion</label>
+      </fieldset>
+
+
+      <fieldset style="border:none;">
+        <legend>Outils</legend>
+        <label><input type="radio" name="toolMode" value="normal" checked> Sans outil</label>
+        <label><input type="radio" name="toolMode" value="magnet"> aimant</label>     <!--mode aimant-->
+        <label><input type="radio" name="toolMode" value="blackHole"> Trou noir</label>  <!--mode trou noir-->
+      </fieldset>
+
+      <fieldset style="border:none;">
+        <legend>Annimation </legend>
+        <button type="button" id="pauseAndPlayButton" style="margin-left:1em;">Pause</button>
+        <button type="button" id="clearButton" style="margin-left:1em;">Clear</button>
+                    <!-- Activation ou désactivation de la gravité -->
+        <label><input type="checkbox" id="gravityCheckbox">Gravité</label>
+      </fieldset>
+
+
+    </div>
+  </div>
+
+  <button id="logoutButton">Déconnexion</button>
+  <canvas id="myCanvas" width="800" height="600" style="border:1px solid black;"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
