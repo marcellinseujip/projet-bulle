@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-console.log("SESSION_SECRET existe :", !!process.env.SESSION_SECRET);
+//console.log("SESSION_SECRET existe :", !!process.env.SESSION_SECRET);
 
 const express = require("express");
 
@@ -50,9 +50,11 @@ const pool = new Pool({
     host: process.env.DB_HOST,
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT
+    port: process.env.DB_PORT,
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
-
 pool.query("SELECT NOW()", function (error, result) {
 
     if (error) {
@@ -75,7 +77,7 @@ app.get("/bulles.html", function (req, res) {
 
 app.use(express.static(__dirname));
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.get("/", function (req, res) {
    // res.sendFile(__dirname + "/index.html");
@@ -88,7 +90,7 @@ app.get("/", function (req, res) {
 
 app.post("/login", function (req, res) {
 
-    console.log("BODY REÇU :", req.body);
+    //console.log("BODY REÇU :", req.body);
 
     const username = req.body.username;
     const password = req.body.password;
